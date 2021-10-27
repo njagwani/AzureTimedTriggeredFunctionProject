@@ -2,7 +2,7 @@
 
 Hello!!!🥳
 
-### About Azure Functions Timer Triggered Project!
+## About Azure Functions Timer Triggered Project! 📣
 
 In the developer community, let us say for example "Stack Overflow", you may have seen that many customers post their queries/ issues. Now, lets us say that you as a developer who contributes regulary to the Stack overflow developer community by answering to customer queries wants to be notified of the new questions that are posted on Stack overflow without having to manually go and check how many questions have been posted today based on a particular criteria like "Azure". You want to get notified on the total number of new questions that are posted in Stack overflow in the past 24 hours so that you can proactively respond to the questions and obtain positive customer feedback.
 
@@ -10,7 +10,7 @@ In this project, I have created Azure Time Triggered function that will run ever
 
 ![](Images/HighlevelFlowDiagram.png)
 
-### About Azure Functions
+## 💯 Short Introfuction On Azure Functions 💯
 Azure Functions is Serverless meanging you don't really have to worry about the infrastructure to run these functions. You just need to focus on the code using the langusge of your choice and Azure will manage your infrastructure. These services can trigger your function or send data input to your function or receive data output from your function. 
 Serverless Logic - Code you write runs on servers that azure manages. 
 
@@ -19,7 +19,7 @@ Azure Functions are activated by triggers. The Triggers include:
 2. TimerTrigger – Azure Function code executes on a schedule, ideal for batch or clean-up tasks.
 3. EventHubTrigger – Azure Function code executes in response to events delivered by an Azure Event Hub
 
-### Pre-requisites
+### Pre-requisites for this Project 💡
 - Slack Account (Free Account Available)
 - Microsoft Azure Account (Free Account)
 - Azure Functions
@@ -27,17 +27,19 @@ Azure Functions are activated by triggers. The Triggers include:
 - .Net Core 3.1
 - Visual Studio Code 2019
 
-In order to get started, I first created a slack account. Navigate to slack.com and sign up for a free account. Once your have logged in, click on "Create a Channel".
+### Lets Get Started!!! 💻
+
+ I first created a slack account. Navigate to slack.com and sign up for a free account. Once your have logged in, click on "Create a Channel".
 
 ![](Images/Slackone.png)
 
-In my case, I have created a channel called azurefunc. in the next step, if you wish you can add more people in your team or else click on "Skip for Now". 
+I have created my channel called azurefunc. In the next step, if you wish you can add more people in your team or else click on "Skip for Now". 
 
 ![](Images/Slack2.png)
 
-Here, I will make use to Slack API and Slack Webhook in order to send messages
+Here, I will make use to Slack API and Slack Webhook in order to send messages 📩 
 
-In order to add apps to my slack, I then added an app called incoming webhooks to my slack, added incoming webhooks Integration to my channel which inturn provided a web URL which I will be referencing my code later on. Be sure to copy this URL on a notepad before you proceed to save settings. 
+I then added an app called incoming webhooks to my slack, added Incoming Webhooks Integration to my channel "azurefunc" which inturn provided a web URL. Be sure to copy this URL on a notepad before you proceed to save settings as this URL will be referenced in your code. 
 
 ![](Images/Slack3.png)
 
@@ -51,42 +53,47 @@ In order to add apps to my slack, I then added an app called incoming webhooks t
 
 ![](Images/Slack8.png)
 
-Now, in order to test my slack-end point if I am able to receive any incoming messages on my slack channel, I then decided to use Postman. Postman is one of the best tools for API testing and I highly recommend that you try it out.  
+In order to check whether if I am able to receive any incoming messages on my slack channel, I then used Postman to test my slack-end point. Postman is one of the best tools for API testing and I highly recommend that you try it out.  
 
 On Postman, I selected my HTTP function to be POST and pasted the weburl that we had copied earlier. In the body of my message, I entered{"text":"My name is Nitin"} and then clicked on Send. I then got a HTTP 200 Ok message. Ideally, I should now see the message "my name is Nitin" on my slack. 
 
 ![](Images/Postman2.png)
 
-Go to your slack channel and you should see the message from incoming-webhook "My name is Nitin".
+Go to your slack channel and you should see the message from incoming-webhook "My name is Nitin".💯
 
 ![](Images/Slack9.png)
 
+### Here is the part where Coding begins!!!🔧
+
 We need to define 2 method functions which are asynchronous in our code, where one of them will make a call to slack with a message and the other function is going to make a call to StackOverflow and get a number of questions. 
 
-Under Azure Extensions, I first created a New Project in Visual Studio Code
-1. Under Azure Functions Extension, select the option "Create New Project" and named it to be AzureTimedTriggeredFunctionProject
-2. Select you language to be C#
-3. Select your run time to be .NET Core 3 LTS
-4. Select your template to be Timer Triggered
-5. Name your Timer Trigger function name, in my case I named it AzureProjTimedTrigger
-6. Provide a namespace, in my case I names it AzureProjTimedTrigger.Function
-7. Enter the cron expression for your timer, since I want the trigger to be scheduled at 9:30 everyday, my cron expression would be "0 30 9***", default value is "0 */5 * * * *" (every 5 minutes)
-8. You will then be prompted to Select Storage account, create new storage account, in my case I named it azureprojtimedtrigger
-9. I then created a new resource group, I named it as azureprojtimedtrigger
-10. Select the location of your resource group, in my case I selected East US 2 for my location
+You will need to launch Visual Studio Code here! 📌
+
+Under Azure Extensions, I first created a New Project in Visual Studio Code 
+
+✦ Under Azure Functions Extension, select the option "Create New Project" and named it "AzureTimedTriggeredFunctionProject"
+✦ Select you language to be C#
+✦ Select your run time to be .NET Core 3 LTS
+✦ Select your template to be Timer Triggered
+✦ Name your Timer Trigger function name, in my case I named it AzureProjTimedTrigger
+✦ Provide a namespace, in my case I names it AzureProjTimedTrigger.Function
+✦ Enter the cron expression for your timer, since I want the trigger to be scheduled at 9:30 everyday, my cron expression would be "0 30 9***", default value is "0 */5 * * * *" (every 5 minutes)
+✦ You will then be prompted to Select Storage account, create new storage account, in my case I named it azureprojtimedtrigger
+✦ I then created a new resource group, I named it as azureprojtimedtrigger
+✦ Select the location of your resource group, in my case I selected East US 2 for my location
 
 I then created a function under Azure Extension Functions
-![](Images/createfunctiononVSS.png)
-1. Select the template to be "Time Triggered"
-2. Provide your function name  - I named it as "AzureProjectTimedTrigger"
-3. Provide a namespace  - I named my namespace to be "AzureProjectTimedTrigger.Function"
-4. Default crontab expression for timer - 0 */5 * * * *
-#### Method Function 1:
-I created a new asynchronous function MakeSlackRequest. 
-MakeSlackRequest will take 1 string parameter: the message we want to send to Slack.
-“HttpClient” object was used to make a POST request to our Slack endpoint. 
 
-Please find below the code. 
+![](Images/createfunctiononVSS.png)
+
+✦ Select the template to be "Time Triggered"
+✦ Provide your function name  - I named it as "AzureProjectTimedTrigger"
+✦ Provide a namespace  - I named my namespace to be "AzureProjectTimedTrigger.Function"
+✦ Default crontab expression for timer - 0 */5 * * * *
+#### Method Function 1 🏳️
+I created a new asynchronous function MakeSlackRequest. MakeSlackRequest will take 1 string parameter: the message we want to send to Slack. “HttpClient” object was used to make a POST request to our Slack endpoint. 
+
+Please find below the code. 👇
  
 using System;
 using System.Text;
@@ -123,12 +130,12 @@ namespace AzureProjecTimedTrigger.Function
     }
 }
 
-After running the above function locally, I was then able to see the message "Testing using Azure!" on my slack channel. This confirmed that I was able to make a call to the web hook with a static message.
+After running the above function locally, I was then able to see the message "Testing using Azure!" on my slack channel. This confirmed that I was able to make a call to the web hook with a static message. 👌
 
 ![](Images/Firstfunctionresult.png)
 ![](Images/firstfunctionrunlocallyslack.png)
 
-Now, the next part of the function is define what is being consumed. For this, I visited StackOverflow API also known as [Stack Exchange API guide](https://api.stackexchange.com/docs). Since, I just want to do a simple search, I visited [StackExchange - Usage of Search API](https://api.stackexchange.com/docs/search).
+Now, the next part of the function is to define what is being consumed. For this, I visited StackOverflow API also known as [Stack Exchange API guide](https://api.stackexchange.com/docs). Since, I just want to do a simple search, I visited [StackExchange - Usage of Search API](https://api.stackexchange.com/docs/search).
 
 ![](Images/StackExchangeSearchAPI1.PNG)
 
@@ -138,11 +145,11 @@ Before you move ahead, please be sure to copy the API request URL which in my ca
 
 ![](Images/StackExchangeSearchAPI.PNG)
 
-Let's continue coding our function.
+## Let's continue coding our function. 🔧
 
-#### Method Function 2:
+#### Method Function 2 🏴
 
-Here is my code for StackOverflow.
+Here is my code for StackOverflow. 👇
 
 We will need to add 2 new "using derivatives"
 using System.Net;
@@ -203,7 +210,7 @@ public static async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, I
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         }
 
-After running my azure function locally, I was then able to get the question count on my slack channel.
+After running my azure function locally, I was then able to get the question count on my slack channel. ✌️
 
 ![](Images/Azurefunctionrunlocally.png)
 
@@ -215,9 +222,9 @@ In Visual Studio Code, under Azure Extensions, navigate to the project where you
 ![](Images/deploytofunctionapp.PNG)
 
 Select the option "Deploy to Function App"
-- Created a new Function App named AzureProjectTimedTrigger
-- Runtime stack was selected to be .NET Core 3.1
-- Location was selected as East US 2
+♢ Created a new Function App named AzureProjectTimedTrigger
+♢ Runtime stack was selected to be .NET Core 3.1
+♢ Location was selected as East US 2
 
 ![](Images/deploymentinprocess.png)
 
@@ -229,11 +236,11 @@ The Azure Function App was deployed successfully and I was able to see the incom
 
 ![](Images/incomingwebhookresponsefunction.png)
 
-On Microsoft Azure Portal,  I was able to see the Memory working set metric for "Azure Timer Tiggered Function App. 
+On Microsoft Azure Portal,  I was able to see the Memory working set metric for "Azure Timer Tiggered Function App. ✅
 
 ![](Images/AzurePortalFunction.PNG)
 
-##### Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 
+##### Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 🏁
 
 What we can do here is to dynamically create that UTC time string so when the function runs every hour or everyday, that will be dynamically be generated. One more thing we need to do is to update our schedule which will set this function to run everyday as opposed to running every 5 minutes. 
 
@@ -248,7 +255,7 @@ In order for the schedule of this function to run everyday day and not every 5 m
 
 So now, we go ahead and delete the hardcoded value, copy and paste epochTime in the curly brackets of response URL which should then dynamically update moving forward. 
 
-        var response = await client.GetAsync($"https://api.stackexchange.com/2.3/search?fromdate={epochTime}&order=desc&sort=activity&intitle=azure&site=stackoverflow");
+ var response = await client.GetAsync($"https://api.stackexchange.com/2.3/search?fromdate={epochTime}&order=desc&sort=activity&intitle=azure&site=stackoverflow");
 
 
 Few Important Resources:
