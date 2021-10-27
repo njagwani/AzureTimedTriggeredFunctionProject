@@ -229,7 +229,7 @@ On Microsoft Azure Portal,  I was able to see the Memory working set metric for 
 
 ![](Images/AzurePortalFunction.PNG)
 
-###Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 
+##### Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 
 
 What we can do here is to dynamically create that UTC time string so when the function runs every hour or everyday, that will be dynamically be generated. One more thing we need to do is to update our schedule which will set this function to run everyday as opposed to running every 5 minutes. 
 
