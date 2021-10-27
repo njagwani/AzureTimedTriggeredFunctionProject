@@ -1,4 +1,4 @@
-#### Azure Functions Timer Triggered Project
+# Azure Functions Timer Triggered Project
 
 Hello!!!🥳
 
