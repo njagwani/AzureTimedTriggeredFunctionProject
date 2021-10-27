@@ -175,7 +175,7 @@ Also, one important thing to keep in mind is that when you create a HttpClientHa
 
 Code below:
 
-public static async Task<string> MakeStackOverflowRequest()
+    public static async Task<string> MakeStackOverflowRequest()
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
@@ -191,7 +191,6 @@ public static async Task<string> MakeStackOverflowRequest()
                 return result;
             }
         }
-  
 
 Now that we have a method defined to our code to consume StackOverFlow Request, we now need to obtain the new question count for the questions posted on StackOverFlow for keyword search "azure" and in order to fo that we need to to decompress the lines of the json string for which we get a return back. 
 
