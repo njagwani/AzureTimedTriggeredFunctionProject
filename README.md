@@ -10,7 +10,7 @@ In this project, I have created Azure Time Triggered function that will run ever
 
 ![](Images/HighlevelFlowDiagram.png)
 
-## 💯 Short Introfuction On Azure Functions 💯
+## 💯 Short Introduction On Azure Functions 💯
 Azure Functions is Serverless meanging you don't really have to worry about the infrastructure to run these functions. You just need to focus on the code using the langusge of your choice and Azure will manage your infrastructure. These services can trigger your function or send data input to your function or receive data output from your function. 
 Serverless Logic - Code you write runs on servers that azure manages. 
 
@@ -71,26 +71,26 @@ You will need to launch Visual Studio Code here! 📌
 
 Under Azure Extensions, I first created a New Project in Visual Studio Code 
 
-✦ Under Azure Functions Extension, select the option "Create New Project" and named it "AzureTimedTriggeredFunctionProject"
-✦ Select you language to be C#
-✦ Select your run time to be .NET Core 3 LTS
-✦ Select your template to be Timer Triggered
-✦ Name your Timer Trigger function name, in my case I named it AzureProjTimedTrigger
-✦ Provide a namespace, in my case I names it AzureProjTimedTrigger.Function
-✦ Enter the cron expression for your timer, since I want the trigger to be scheduled at 9:30 everyday, my cron expression would be "0 30 9***", default value is "0 */5 * * * *" (every 5 minutes)
-✦ You will then be prompted to Select Storage account, create new storage account, in my case I named it azureprojtimedtrigger
-✦ I then created a new resource group, I named it as azureprojtimedtrigger
-✦ Select the location of your resource group, in my case I selected East US 2 for my location
+- Under Azure Functions Extension, select the option "Create New Project" and named it "AzureTimedTriggeredFunctionProject"
+- Select you language to be C#
+- Select your run time to be .NET Core 3 LTS
+- Select your template to be Timer Triggered
+- Name your Timer Trigger function name, in my case I named it AzureProjTimedTrigger
+- Provide a namespace, in my case I names it AzureProjTimedTrigger.Function
+- Enter the cron expression for your timer, since I want the trigger to be scheduled at 9:30 everyday, my cron expression would be "0 30 9***", default value is "0 */5 * * * *" (every 5 minutes)
+- You will then be prompted to Select Storage account, create new storage account, in my case I named it azureprojtimedtrigger
+- I then created a new resource group, I named it as azureprojtimedtrigger
+- Select the location of your resource group, in my case I selected East US 2 for my location
 
 I then created a function under Azure Extension Functions
 
 ![](Images/createfunctiononVSS.png)
 
-✦ Select the template to be "Time Triggered"
-✦ Provide your function name  - I named it as "AzureProjectTimedTrigger"
-✦ Provide a namespace  - I named my namespace to be "AzureProjectTimedTrigger.Function"
-✦ Default crontab expression for timer - 0 */5 * * * *
-#### Method Function 1 🏳️
+- Select the template to be "Time Triggered"
+- Provide your function name  - I named it as "AzureProjectTimedTrigger"
+- Provide a namespace  - I named my namespace to be "AzureProjectTimedTrigger.Function"
+- Default crontab expression for timer - 0 */5 * * * *
+#### Method Function 1 ✏️
 I created a new asynchronous function MakeSlackRequest. MakeSlackRequest will take 1 string parameter: the message we want to send to Slack. “HttpClient” object was used to make a POST request to our Slack endpoint. 
 
 Please find below the code. 👇
@@ -145,9 +145,9 @@ Before you move ahead, please be sure to copy the API request URL which in my ca
 
 ![](Images/StackExchangeSearchAPI.PNG)
 
-## Let's continue coding our function. 🔧
+### Let's continue coding our function. 🔧
 
-#### Method Function 2 🏴
+#### Method Function 2 ✏️
 
 Here is my code for StackOverflow. 👇
 
@@ -222,9 +222,9 @@ In Visual Studio Code, under Azure Extensions, navigate to the project where you
 ![](Images/deploytofunctionapp.PNG)
 
 Select the option "Deploy to Function App"
-♢ Created a new Function App named AzureProjectTimedTrigger
-♢ Runtime stack was selected to be .NET Core 3.1
-♢ Location was selected as East US 2
+- Created a new Function App named AzureProjectTimedTrigger
+- Runtime stack was selected to be .NET Core 3.1
+- Location was selected as East US 2
 
 ![](Images/deploymentinprocess.png)
 
@@ -240,7 +240,7 @@ On Microsoft Azure Portal,  I was able to see the Memory working set metric for 
 
 ![](Images/AzurePortalFunction.PNG)
 
-##### Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 🏁
+## Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 🏁
 
 What we can do here is to dynamically create that UTC time string so when the function runs every hour or everyday, that will be dynamically be generated. One more thing we need to do is to update our schedule which will set this function to run everyday as opposed to running every 5 minutes. 
 
@@ -266,4 +266,4 @@ Few Important Resources:
 
 Cheers!
 
-Nitin Jagwani 
+Nitin Jagwani 🤙
