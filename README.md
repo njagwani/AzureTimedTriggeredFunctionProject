@@ -1,6 +1,14 @@
-# AzureFunctionsTimerTriggeredProject
+# Azure Functions Timer Triggered Project
 
 Hello!!!🥳
+
+### About Azure Functions Timer Triggered Project!
+
+In the developer community, let us say for example "Stack Overflow", you may have seen that many customers post their queries/ issues. Now, lets us say that you as a developer who contributes regulary to the Stack overflow developer community by answering to customer queries wants to be notified of the new questions that are posted on Stack overflow without having to manually go and check how many questions have been posted today based on a particular criteria like "Azure". You want to be able to get the total number of new questions that are posted in Stack overflow in the past 24 hours so that you can proactively respond to the questions and obtain positive customer feedback.
+
+In this project, I have created Azure Time Triggered function that will every 5 minutes (TimeTriggered). Once the function is triggered, it will search Stack Overflow for a certain topic (based on your search), query the questions repository using its API and then message will be sent to the Slack Channel with the number of new questions that are available on Stack Overflow. This is then notified via email. 
+
+![](Images/HighlevelFlowDiagram.png)
 
 ### About Azure Functions
 Azure Functions is Serverless meanging you don't really have to worry about the infrastructure to run these functions. You just need to focus on the code using the langusge of your choice and Azure will manage your infrastructure. These services can trigger your function or send data input to your function or receive data output from your function. 
@@ -11,15 +19,7 @@ Azure Functions are activated by triggers. The Triggers include:
 2. TimerTrigger – Azure Function code executes on a schedule, ideal for batch or clean-up tasks.
 3. EventHubTrigger – Azure Function code executes in response to events delivered by an Azure Event Hub
 
-### About Azure Functions Timer Triggered Project!
-
-In the developer community, let us say for example "Stack Overflow", you may have seen that many customers post their queries/ issues. Now, lets us say that you as a developer who contributes regulary to the Stack overflow developer community by answering to customer queries wants to be notified of the new questions that are posted on Stack overflow without having to manually go and check how many questions have been posted today based on a particular criteria like "Azure". You want to be able to get the total number of new questions that are posted in Stack overflow in the past 24 hours so that you can proactively respond to the questions and obtain positive customer feedback.
-
-In this project, I have created Azure Time Triggered function that will every 5 minutes (TimeTriggered). Once the function is triggered, it will search Stack Overflow for a certain topic (based on your search), query the questions repository using its API and then message will be sent to the Slack Channel with the number of new questions that are available on Stack Overflow. This is then notified via email. 
-
-![](Images/HighlevelFlowDiagram.png)
-
-### Pre-requisites for this Project
+### Pre-requisites
 - Slack Account (Free Account Available)
 - Microsoft Azure Account (Free Account)
 - Azure Functions
@@ -73,13 +73,13 @@ Under Azure Extensions, I first created a New Project in Visual Studio Code
 7. Enter the cron expression for your timer, since I want the trigger to be scheduled at 9:30 everyday, my cron expression would be "0 30 9***", default value is "0 */5 * * * *" (every 5 minutes)
 8. You will then be prompted to Select Storage account, create new storage account, in my case I named it azureprojtimedtrigger
 9. I then created a new resource group, I named it as azureprojtimedtrigger
-10. Select the location of your resource group, in my case I selected East US 2
+10. Select the location of your resource group, in my case I selected East US 2 for my location
 
 I then created a function under Azure Extension Functions
 ![](Images/createfunctiononVSS.png)
-1. Select the template to be Time Triggered
-2. Provide your function name  - AzureProjectTimedTrigger
-3. Provide a namespace  - AzureProjectTimedTrigger.Function
+1. Select the template to be "Time Triggered"
+2. Provide your function name  - I named it as "AzureProjectTimedTrigger"
+3. Provide a namespace  - I named my namespace to be "AzureProjectTimedTrigger.Function"
 4. Default crontab expression for timer - 0 */5 * * * *
 #### Method Function 1:
 I created a new asynchronous function MakeSlackRequest. 
@@ -160,7 +160,13 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
-The next step is to add a new method before our MakeSlackRequest method:
+The next step is to add a new method before our MakeSlackRequest method.
+
+Few things to note here is that we have used "GetAsync" on the HttpClient object instead of using PostAsync. 
+
+Also, one important thing to keep in mind is that when you create a HttpClientHandlerobject which is used to setup our HttpClient object, we would then want to decompress the results from our API call. Normally StackOverFlow returns its json payload compressed in zip format.
+
+Code below:
 
 public static async Task<string> MakeStackOverflowRequest()
         {
@@ -178,9 +184,7 @@ public static async Task<string> MakeStackOverflowRequest()
                 return result;
             }
         }
-Few things to note here is that we have used "GetAsync" on the HttpClient object instead of using PostAsync. 
-
-Also, one important thing to keep in mind is that when we create a HttpClientHandlerobject which is used to setup our HttpClient object, we would then want to decompress the results from our API call. Normally StackOverFlow returns its json payload compressed in zip format. The pieces of code are provided below. 
+  
 
 Now that we have a method defined to our code to consume StackOverFlow Request, we now need to obtain the new question count for the questions posted on StackOverFlow for keyword search "azure" and in order to fo that we need to to decompress the lines of the json string for which we get a return back. 
 
