@@ -75,11 +75,11 @@ Under Azure Extensions, I first created a New Project in Visual Studio Code
 - Select you language to be C#
 - Select your run time to be .NET Core 3 LTS
 - Select your template to be Timer Triggered
-- Name your Timer Trigger function name, in my case I named it AzureProjTimedTrigger
-- Provide a namespace, in my case I names it AzureProjTimedTrigger.Function
+- Name your Timer Trigger function name, in my case I named it AzureProjectTimedTrigger
+- Provide a namespace, in my case I names it AzureProjectTimedTrigger.Function
 - Enter the cron expression for your timer, since I want the trigger to be scheduled at 9:30 everyday, my cron expression would be "0 30 9***", default value is "0 */5 * * * *" (every 5 minutes)
-- You will then be prompted to Select Storage account, create new storage account, in my case I named it azureprojtimedtrigger
-- I then created a new resource group, I named it as azureprojtimedtrigger
+- You will then be prompted to Select Storage account, create new storage account, in my case I named it AzureProjectTimedTrigger
+- I then created a new resource group, I named it as AzureProjectTimedTrigger
 - Select the location of your resource group, in my case I selected East US 2 for my location
 
 I then created a function under Azure Extension Functions
