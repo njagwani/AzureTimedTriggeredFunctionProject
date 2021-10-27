@@ -17,7 +17,7 @@ In the developer community, let us say for example "Stack Overflow", you may hav
 
 In this project, I have created Azure Time Triggered function that will every 5 minutes (TimeTriggered). Once the function is triggered, it will search Stack Overflow for a certain topic (based on your search), query the questions repository using its API and then message will be sent to the Slack Channel with the number of new questions that are available on Stack Overflow. This is then notified via email. 
 
-![]Images/AzureFunctionsTimeTriggeredProject HighlevelFlowDiagram
+![](Images/AzureFunctionsTimeTriggeredProject HighlevelFlowDiagram.PNG)
 
 ### Pre-requisites for this Project
 - Slack Account (Free Account Available)
@@ -29,27 +29,32 @@ In this project, I have created Azure Time Triggered function that will every 5 
 
 In order to get started, I first created a slack account. Navigate to slack.com and sign up for a free account. Once your have logged in, click on "Create a Channel".
 
-![](Images/Slack1)
+![](Images/Slack1.PNG)
 
 In my case, I have created a channel called azurefunc. in the next step, if you wish you can add more people in your team or else click on "Skip for Now". 
 
-![](Images/Slack2)
+![](Images/Slack2.PNG)
 
 Here, I will make use to Slack API and Slack Webhook in order to send messages
 
 In order to add apps to my slack, I then added an app called incoming webhooks to my slack, added incoming webhooks Integration to my channel which inturn provided a web URL which I will be referencing my code later on. Be sure to copy this URL on a notepad before you proceed to save settings. 
 
-![](Images/Slack3) ![](Images/Slack4) ![](Images/Slack5) ![](Images/Slack6) ![](Images/Slack7) ![](Images/Slack8)
+![](Images/Slack3.PNG) 
+![](Images/Slack4.PNG) 
+![](Images/Slack5.PNG) 
+![](Images/Slack6.PNG) 
+![](Images/Slack7.PNG) 
+![](Images/Slack8.PNG)
 
 Now, in order to test my slack-end point if I am able to receive any incoming messages on my slack channel, I then decided to use Postman. Postman is one of the best tools for API testing and I highly recommend that you try it out.  
 
 On Postman, I selected my HTTP function to be POST and pasted the weburl that we had copied earlier. In the body of my message, I entered{"text":"My name is Nitin"} and then clicked on Send. I then got a HTTP 200 Ok message. Ideally, I should now see the message "my name is Nitin" on my slack. 
 
-![](Images/Postman2)
+![](Images/Postman2.PNG)
 
 Go to your slack channel and you should see the message from incoming-webhook "My name is Nitin".
 
-![](Images/Slack9)
+![](Images/Slack9.PNG)
 
 We need to define 2 method functions which are asynchronous in our code, where one of them will make a call to slack with a message and the other function is going to make a call to StackOverflow and get a number of questions. 
 
@@ -66,7 +71,7 @@ Under Azure Extensions, I first created a New Project in Visual Studio Code
 10. Select the location of your resource group, in my case I selected East US 2
 
 I then created a function under Azure Extension Functions
-![](Images/createfunctiononVSS)
+![](Images/createfunctiononVSS.PNG)
 1. Select the template to be Time Triggered
 2. Provide your function name  - AzureProjectTimedTrigger
 3. Provide a namespace  - AzureProjectTimedTrigger.Function
@@ -115,8 +120,8 @@ namespace AzureProjecTimedTrigger.Function
 
 After running the above function locally, I was then able to see the message "Testing using Azure!" on my slack channel. This confirmed that I was able to make a call to the web hook with a static message.
 
-![](Images/Firstfunctionresult)
-![](Images/firstfunctionrunlocallyslack)
+![](Images/Firstfunctionresult.PNG)
+![](Images/firstfunctionrunlocallyslack.PNG)
 
 Now, the next part of the function is define what is being consumed. For this, I visited StackOverflow API also known as [Stack Exchange API guide](https://api.stackexchange.com/docs). Since, I just want to do a simple search, I visited [StackExchange - Usage of Search API](https://api.stackexchange.com/docs/search).
 
@@ -191,33 +196,33 @@ public static async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, I
 
 After running my azure function locally, I was then able to get the question count on my slack channel.
 
-![](Images/Azurefunctionrunlocally)
+![](Images/Azurefunctionrunlocally.PNG)
 
-![](Images/incomingresponse)
+![](Images/incomingresponse.PNG)
 
 Now, that the Azure function is working well locally, it is now time to deploy this function to Azure Function App. 
 In Visual Studio Code, under Azure Extensions, navigate to the project where your function was created. 
 
-![](Images/deploytofunctionapp)
+![](Images/deploytofunctionapp.PNG)
 
 Select the option "Deploy to Function App"
 - Created a new Function App named AzureProjectTimedTrigger
 - Runtime stack was selected to be .NET Core 3.1
 - Location was selected as East US 2
 
-![](Images/deploymentinprocess)
+![](Images/deploymentinprocess.PNG)
 
 This function was then created in a new storage account “azureprojecttimedtrigger”
 
-![](Images/Azuretimetriggeredfunctionsapp)
+![](Images/Azuretimetriggeredfunctionsapp.PNG)
 
 The Azure Function App was deployed successfully and I was able to see the incoming web-hook response from Stack Overflow on my slack channel with the number of questions for keyword "azure".
 
-![](Images/incomingwebhookresponsefunction)
+![](Images/incomingwebhookresponsefunction.PNG)
 
 On Microsoft Azure Portal,  I was able to see the Memory working set metric for "Azure Timer Tiggered Function App. 
 
-![](Images/AzurePortalFunction)
+![](Images/AzurePortalFunction.PNG)
 
 ###Optional Steps in case if you want to run the function everyday as opposed to running every 5 minutes. 
 
