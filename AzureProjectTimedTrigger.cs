@@ -48,7 +48,7 @@ namespace AzureProjectTimedTrigger.Function
             {
                 var requestData = new StringContent("{'text':'" + message + "'}", Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync($"https://hooks.slack.com/services/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", requestData);
+                var response = await client.PostAsync($"<EnterYourIncomingWebHookURLhere>", requestData);
 
                 var result = await response.Content.ReadAsStringAsync();
 
