@@ -29,7 +29,7 @@ In this project, I have created Azure Time Triggered function that will every 5 
 
 In order to get started, I first created a slack account. Navigate to slack.com and sign up for a free account. Once your have logged in, click on "Create a Channel".
 
-![](Images/Slackone.PNG)
+![](Images/Slackone.ong)
 
 In my case, I have created a channel called azurefunc. in the next step, if you wish you can add more people in your team or else click on "Skip for Now". 
 
