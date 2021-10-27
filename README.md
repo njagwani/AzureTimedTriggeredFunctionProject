@@ -17,7 +17,7 @@ In the developer community, let us say for example "Stack Overflow", you may hav
 
 In this project, I have created Azure Time Triggered function that will every 5 minutes (TimeTriggered). Once the function is triggered, it will search Stack Overflow for a certain topic (based on your search), query the questions repository using its API and then message will be sent to the Slack Channel with the number of new questions that are available on Stack Overflow. This is then notified via email. 
 
-![](Images/AzureFunctionsTimeTriggeredProject HighlevelFlowDiagram.PNG)
+![](Images/AzureFunctionsTimeTriggeredProjectHighlevelFlowDiagram.PNG)
 
 ### Pre-requisites for this Project
 - Slack Account (Free Account Available)
@@ -39,11 +39,16 @@ Here, I will make use to Slack API and Slack Webhook in order to send messages
 
 In order to add apps to my slack, I then added an app called incoming webhooks to my slack, added incoming webhooks Integration to my channel which inturn provided a web URL which I will be referencing my code later on. Be sure to copy this URL on a notepad before you proceed to save settings. 
 
-![](Images/Slack3.PNG) 
-![](Images/Slack4.PNG) 
-![](Images/Slack5.PNG) 
-![](Images/Slack6.PNG) 
-![](Images/Slack7.PNG) 
+![](Images/Slack3.PNG)
+
+![](Images/Slack4.PNG)
+
+![](Images/Slack5.PNG)
+
+![](Images/Slack6.PNG)
+
+![](Images/Slack7.PNG)
+
 ![](Images/Slack8.PNG)
 
 Now, in order to test my slack-end point if I am able to receive any incoming messages on my slack channel, I then decided to use Postman. Postman is one of the best tools for API testing and I highly recommend that you try it out.  
