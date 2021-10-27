@@ -1,5 +1,3 @@
-# AzureTimedTriggeredFunctionProject
-
 
 # AzureFunctionsTimeTriggedProject
 
@@ -107,13 +105,13 @@ After running the above function locally, I was then able to see the message "Te
 
 Now, the next part of the function is define what is being consumed. For this, I visited StackOverflow API also known as [Stack Exchange API guide]. (https://api.stackexchange.com/docs). Since, I just want to do a simple search, I visited [StackExchange - Usage of Search API] (https://api.stackexchange.com/docs/search).
 
-![](Images/StackExchangeSearchAPI1.PNG)
+<Paste StackExchangeSearchAPI1 screenshot here>
 
-As seen in the scrrenshot above, if I need to know if any new questions were posted in the past 24 hours around topic "azure", then I will need to include the word "azure" in the box next to "intitle" and select previous day date next to "fromdate". Now, click on Run to get the response JSON. 
+As seen in the scrrenshot above, if I need to know if any new questions were posted in the past 24 hours around topic "azure", then I will need to include the word "azure" in the box next to "intitle". Now, click on Run to get the response JSON. 
 
 Before you move ahead, please be sure to copy the API request URL which in my case it is  https://api.stackexchange.com/2.3/search?fromdate=1635206400&order=desc&sort=activity&intitle=azure&site=stackoverflow
 
-![](Images/StackExchangeSearchAPI.PNG)
+<Paste StackExchangeSearchAPI screenshot here>
 
 Let's continue coding our function.
 
@@ -207,7 +205,7 @@ So now, we go ahead and delete the hardcoded value, copy and paste epochTime in 
 
 Few Important Resources:
 
- -[Azure Functions Timer trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp)
+ - [Azure Functions Timer trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp)
 - [Create a C# function in Azure using Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp)
 - [Manage your Function App](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#cors)
 
