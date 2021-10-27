@@ -1,4 +1,4 @@
-# AzureFunctionsTimeTriggeredProject
+# AzureFunctionsTimerTriggeredProject
 
 Hello!!!🥳
 
@@ -11,7 +11,7 @@ Azure Functions are activated by triggers. The Triggers include:
 2. TimerTrigger – Azure Function code executes on a schedule, ideal for batch or clean-up tasks.
 3. EventHubTrigger – Azure Function code executes in response to events delivered by an Azure Event Hub
 
-### About AzureFunctions Timer Triggered Project 
+### About Azure Functions Timer Triggered Project!
 
 In the developer community, let us say for example "Stack Overflow", you may have seen that many customers post their queries/ issues. Now, lets us say that you as a developer who contributes regulary to the Stack overflow developer community by answering to customer queries wants to be notified of the new questions that are posted on Stack overflow without having to manually go and check how many questions have been posted today based on a particular criteria like "Azure". You want to be able to get the total number of new questions that are posted in Stack overflow in the past 24 hours so that you can proactively respond to the questions and obtain positive customer feedback.
 
@@ -203,7 +203,7 @@ After running my azure function locally, I was then able to get the question cou
 
 ![](Images/Azurefunctionrunlocally.png)
 
-![](Images/incomingresponse.png
+![](Images/incomingresponse.png)
 
 Now, that the Azure function is working well locally, it is now time to deploy this function to Azure Function App. 
 In Visual Studio Code, under Azure Extensions, navigate to the project where your function was created. 
