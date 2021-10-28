@@ -4,14 +4,14 @@ Hello!!!🥳
 
 ## About Azure Functions Timer Triggered Project! 📣
 
-In the developer community, let us say for example "Stack Overflow", you may have seen that many customers post their queries/ issues. Now, lets us say that you as a developer who contributes regulary to the Stack overflow developer community by answering to customer queries wants to be notified of the new questions that are posted on Stack overflow without having to manually go and check how many questions have been posted today based on a particular criteria like "Azure". You want to get notified on the total number of new questions that are posted in Stack overflow in the past 24 hours so that you can proactively respond to the questions and obtain positive customer feedback.
+In the developer community, let us say for example "Stack Overflow", you may have seen that many customers post their queries/ issues. Now, lets us say that you as a developer who contributes regularly to the Stack overflow developer community by answering to customer queries wants to be notified of the new questions that are posted on Stack overflow without having to manually go and check how many questions have been posted today based on a particular criteria like "Azure". You want to get notified on the total number of new questions that are posted in Stack overflow in the past 24 hours so that you can proactively respond to the questions and obtain positive customer feedback.
 
 In this project, I have created Azure Time Triggered function that will run every 5 minutes (TimeTriggered). Once the function is triggered, it will search Stack Overflow for a certain topic (based on your search), query the questions repository using its API and then message will be sent to the Slack Channel with the number of new questions that are available on Stack Overflow. This is then notified via email. 
 
 ![](Images/HighlevelFlowDiagram.png)
 
 ## 💯 Short Introduction On Azure Functions 💯
-Azure Functions is Serverless meanging you don't really have to worry about the infrastructure to run these functions. You just need to focus on the code using the langusge of your choice and Azure will manage your infrastructure. These services can trigger your function or send data input to your function or receive data output from your function. 
+Azure Functions is Serverless meaning you don't really have to worry about the infrastructure to run these functions. You just need to focus on the code using the langusge of your choice and Azure will manage your infrastructure. These services can trigger your function or send data input to your function or receive data output from your function. 
 Serverless Logic - Code you write runs on servers that azure manages. 
 
 Azure Functions are activated by triggers. The Triggers include:
@@ -139,7 +139,7 @@ Now, the next part of the function is to define what is being consumed. For this
 
 ![](Images/StackExchangeSearchAPI1.PNG)
 
-As seen in the scrrenshot above, if I need to know if any new questions were posted in the past 24 hours around topic "azure", then I will need to include the word "azure" in the box next to "intitle" and select previous day date next to "fromdate". Now, click on Run to get the response JSON. 
+As seen in the screenshot above, if I need to know if any new questions were posted in the past 24 hours around topic "azure", then I will need to include the word "azure" in the box next to "intitle" and select previous day date next to "fromdate". Now, click on Run to get the response JSON. 
 
 Before you move ahead, please be sure to copy the API request URL which in my case it is  https://api.stackexchange.com/2.3/search?fromdate=1635206400&order=desc&sort=activity&intitle=azure&site=stackoverflow
 
